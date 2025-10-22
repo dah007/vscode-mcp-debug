@@ -20,10 +20,6 @@ dist/
 htmlcov/
 *.log
 
-# IDE/editor configs
-.vscode/
-.idea/
-
 # Secrets and environment
 .env
 .env.*

@@ -31,7 +31,6 @@ env/ export-ignore
 instance/ export-ignore
 htmlcov/ export-ignore
 .pytest_cache/ export-ignore
-.vscode/ export-ignore
 .idea/ export-ignore
 # Treat Python files as text
 *.py text

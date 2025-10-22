@@ -1,4 +1,7 @@
-# VS Code Debug MCP Setup Guide
+# VS Code Debug MCP for Python (for now...)
+
+[< Back](../README.md)
+
 
 ## 📋 Overview
 

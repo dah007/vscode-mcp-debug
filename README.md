@@ -1,6 +1,6 @@
 # VS Code Debug MCP for Python (for now...)
 
-A Visual Studio Code extension that captures debug session data and forwards it to a Model Context Protocol (MCP) server for centralized monitoring and analysis.
+A Visual Studio Code extension that captures debug session data forwarding it to a Model Context Protocol (MCP) server for centralized monitoring and analysis where it can be used by AI Agents (like Copilot).
 
 ## ✨ Features
 
@@ -8,7 +8,7 @@ A Visual Studio Code extension that captures debug session data and forwards it 
 - 🚀 **MCP Integration**: Built with FastMCP for seamless tool integration
 - 📡 **RESTful API**: Easy access to debug data via HTTP endpoints
 - ⚙️ **Configurable**: Customizable server URL and enable/disable options
-- 🧪 **Well Tested**: Comprehensive test suite with 100% pass rate
+- 🧪 **Well Tested**: Comprehensive test suite
 
 ## 🎯 Use Cases
 
@@ -26,12 +26,21 @@ A Visual Studio Code extension that captures debug session data and forwards it 
     ```bash
     cd server && python3 -m venv venv
     source venv/bin/activate
+    # Install server dependencies
+    pip install -r requirements.txt
+
+    cd ..
+
+    # Install extension dependencies  
+    cd extension && npm install && npm run compile
+
     ```
     From the project root install the Node modules:
     ```bash
     cd extension
     npm i
     ```
+    **NOTE:** Windows Powershell uses `python` in place of `python3`
 
 2. **Start the Server**
 
@@ -39,28 +48,13 @@ A Visual Studio Code extension that captures debug session data and forwards it 
     ```bash
     cd server && source venv/bin/activate && python3 -m uvicorn main:app --host 127.0.0.1 --port 8001
     ```
-    Windows:
-    ```bash
-    cd server && source venv/bin/activate && python -m uvicorn main:app --host 127.0.0.1 --port 8001
-    ```
-
-    In both cases, add ` --reload` to the end for hot reloading
+    **NOTE:** Windows Powershell uses `python` in place of `python3`
 
 3. **Open VS Code** in this workspace
 
 4. **Start Debugging** any Python file (F5)
 
 5. **View Debug Data** at `http://localhost:8001/debug-data`
-
-## 📊 Status
-
-| Component | Status | Details |
-|-----------|--------|---------|
-| MCP Server | ✅ Running | Port 8001, FastAPI + FastMCP |
-| VS Code Extension | ✅ Compiled | TypeScript, auto-activates on debug |
-| Data Flow | ✅ Verified | End-to-end testing complete |
-| API Endpoints | ✅ Working | Health check + debug data |
-| Test Suite | ✅ Passing | 5/5 comprehensive tests |
 
 ## 🏗️ Architecture
 

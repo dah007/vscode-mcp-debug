@@ -1,5 +1,7 @@
 # VS Code Debug MCP - Sample Test Results
 
+[< Back](../README.md)
+
 ## 🎉 Test Summary
 
 **Status**: ✅ ALL TESTS PASSED  
@@ -110,7 +112,3 @@ Debug test completed!
 - `GET /debug-data` - Retrieve all debug data
 - `POST /debug-data` - Send debug data to server
 - `/mcp/*` - MCP tools endpoints (mounted)
-
-## 🚀 Status: Production Ready
-
-The VS Code Debug MCP setup has been thoroughly tested and is ready for use in development workflows. All components are functioning correctly and the data flow has been verified end-to-end.
