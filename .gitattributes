@@ -1,0 +1,70 @@
+# Treat Python files as text
+*.py text
+
+# Normalize line endings
+*.py text eol=lf
+*.sh text eol=lf
+*.md text eol=lf
+
+# Mark binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.db binary
+*.sqlite3 binary
+
+# Exclude from export
+__pycache__/ export-ignore
+*.pyc export-ignore
+*.pyo export-ignore
+*.log export-ignore
+*.coverage export-ignore
+*.egg-info/ export-ignore
+build/ export-ignore
+dist/ export-ignore
+.env export-ignore
+.env.* export-ignore
+venv/ export-ignore
+.venv/ export-ignore
+env/ export-ignore
+instance/ export-ignore
+htmlcov/ export-ignore
+.pytest_cache/ export-ignore
+.vscode/ export-ignore
+.idea/ export-ignore
+# Treat Python files as text
+*.py text
+
+# Normalize line endings
+*.py text eol=lf
+*.sh text eol=lf
+*.md text eol=lf
+
+# Mark binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.db binary
+*.sqlite3 binary
+
+# Exclude from export
+__pycache__/ export-ignore
+*.pyc export-ignore
+*.pyo export-ignore
+*.log export-ignore
+*.coverage export-ignore
+*.egg-info/ export-ignore
+build/ export-ignore
+dist/ export-ignore
+.env export-ignore
+.env.* export-ignore
+venv/ export-ignore
+.venv/ export-ignore
+env/ export-ignore
+instance/ export-ignore
+htmlcov/ export-ignore
+.pytest_cache/ export-ignore
+.vscode/ export-ignore
+.idea/ export-ignore
