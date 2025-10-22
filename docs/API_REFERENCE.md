@@ -1,5 +1,7 @@
 # API Reference - VS Code Debug MCP
 
+[< Back](../README.md)
+
 ## Base URL
 ```
 http://localhost:8001

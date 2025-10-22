@@ -1,6 +1,8 @@
 # VS Code Debug MCP for Python (for now...)
 
-A Visual Studio Code extension that captures debug session data forwarding it to a Model Context Protocol (MCP) server for centralized monitoring and analysis where it can be used by AI Agents (like Copilot).
+A Visual Studio Code extension, and light weight MCP (Model Context Protocol) server for centralized monitoring and analysis where it can be used by AI Agents (like Copilot).
+
+Data is collected using the built-in VS Code debugger and past to the server where it can be directly accessed by Copilot (and others) as a MCP host
 
 ## ✨ Features
 
@@ -13,10 +15,9 @@ A Visual Studio Code extension that captures debug session data forwarding it to
 ## 🎯 Use Cases
 
 - **Debug Session Analysis**: Monitor variable changes and execution flow
-- **Remote Debugging**: Centralize debug data from multiple VS Code instances
-- **Education**: Teaching debugging concepts with visual data flow
-- **Development Tools**: Build custom tools on top of debug data
-- **Automation**: Integrate debug information into CI/CD pipelines
+- **Remote Debugging**: Possible centralization of debug data from multiple VS Code instances to a single database
+- **Education**: Teaching debugging concepts with visual data flow. Use this tool as an example of how to build out new debugging tools, for Python and other languages
+- **Automation**: Integrate debug information into CI/CD pipelines / AI Agent workflows
 
 ## 🚀 Quick Start
 
