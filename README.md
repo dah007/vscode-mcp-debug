@@ -97,8 +97,11 @@ graph LR
 
 ### Setup
 ```bash
+cd server && source venv/bin/activate
 # Install server dependencies
-cd server && pip install -r requirements.txt
+pip install -r requirements.txt
+
+cd ..
 
 # Install extension dependencies  
 cd extension && npm install && npm run compile
@@ -148,7 +151,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Built with [FastMCP](https://github.com/jlowin/fastmcp) for MCP integration
 - Uses [FastAPI](https://fastapi.tiangolo.com/) for the web server
-- Inspired by the need for better debugging workflows in VS Code
+- Inspired by the need to learn!
 
 ---
 

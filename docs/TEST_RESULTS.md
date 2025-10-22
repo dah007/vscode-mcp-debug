@@ -1,4 +1,4 @@
-# VS Code Debug MCP Setup - Test Results
+# VS Code Debug MCP - Sample Test Results
 
 ## 🎉 Test Summary
 
