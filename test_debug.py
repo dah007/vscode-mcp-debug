@@ -16,8 +16,8 @@ def calculate_product(a, b):
 def main():
     print("Starting debug test...")
     
-    x = 10
-    y = 20
+    x = 104
+    y = 205
     
     # Set breakpoint here to test debug data collection
     sum_result = calculate_sum(x, y)

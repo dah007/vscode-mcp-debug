@@ -23,7 +23,13 @@ Data is collected using the built-in VS Code debugger and past to the server whe
 
 1. **Install**
 
-    From the project root install Python packages:
+    - Use included server setup script: `server-install.sh` (or `server-install.ps1` for Powershell users)
+    - Use included extenssion setup script: `extension-install.sh` (or `extension-install.ps1` for PS users)
+    **NOTE:** Shell scripts require execute permissions[^1].
+
+    OR ...
+
+    From the project root install Python packages[^2]:
     ```bash
     cd server && python3 -m venv venv
     source venv/bin/activate
@@ -41,15 +47,13 @@ Data is collected using the built-in VS Code debugger and past to the server whe
     cd extension
     npm i
     ```
-    **NOTE:** Windows Powershell uses `python` in place of `python3`
 
 2. **Start the Server**
 
-    Linux/MacOS/WSL:
+    Linux/MacOS/WSL[^2]:
     ```bash
     cd server && source venv/bin/activate && python3 -m uvicorn main:app --host 127.0.0.1 --port 8001
     ```
-    **NOTE:** Windows Powershell uses `python` in place of `python3`
 
 3. **Open VS Code** in this workspace
 
@@ -115,23 +119,38 @@ python test_extension_flow.py
 
 ```
 vscode-debug-mcp/
-├── 📄 README.md                 # This file
-├── 📄 SETUP_GUIDE.md           # Detailed setup instructions
-├── 📄 TEST_RESULTS.md          # Test verification results
-├── 🔧 extension/               # VS Code extension
-│   ├── src/extension.ts        # Extension source code
-│   ├── package.json           # Extension manifest
-│   └── dist/extension.js      # Compiled extension
-├── 🖥️ server/                  # MCP server
-│   ├── main.py                # FastAPI application
-│   ├── tools.py               # MCP tools definitions
-│   ├── store.py               # Data storage layer
-│   └── requirements.txt       # Python dependencies
-├── 🧪 test_debug.py            # Sample debug script
-├── 🧪 test_extension_flow.py   # Extension flow tests
-├── 🧪 comprehensive_test.py    # Full system tests
-└── ⚙️ .vscode/                 # VS Code configuration
-    └── launch.json            # Debug configuration
+├── 📄 README.md                    # This file
+├── 📄 Makefile                     # Build automation
+├── 🔧 server-install.sh            # Server setup script (Linux/Mac)
+├── 🔧 server-install.ps1           # Server setup script (Windows)
+├── 🔧 server-start.sh              # Server start script
+├── 🔧 clean-up.sh                  # Cleanup script (Linux/Mac)
+├── 🔧 CleanUp.ps1                  # Cleanup script (Windows)
+├── 📁 docs/                        # Documentation
+│   ├── SETUP_GUIDE.md             # Detailed setup instructions
+│   ├── TEST_RESULTS.md            # Test verification results
+│   ├── API_REFERENCE.md           # API documentation
+│   └── OVERVIEW.md                # Project overview
+├── 🔧 extension/                   # VS Code extension
+│   ├── src/extension.ts           # Extension source code
+│   ├── package.json               # Extension manifest
+│   ├── tsconfig.json              # TypeScript configuration
+│   └── dist/extension.js          # Compiled extension
+├── 🖥️ server/                      # MCP server
+│   ├── main.py                    # FastAPI application
+│   ├── main_simple.py             # Simplified server version
+│   ├── tools.py                   # MCP tools definitions
+│   ├── store.py                   # Data storage layer
+│   ├── requirements.txt           # Python dependencies
+│   ├── test_main.py               # Server tests
+│   ├── test_mcp_tools.py          # MCP tools tests
+│   └── venv/                      # Python virtual environment
+├── 🧪 test_debug.py                # Sample debug script
+├── 🧪 test_extension_flow.py       # Extension flow tests
+├── 🧪 comprehensive_test.py        # Full system tests
+├── 📄 tasks.py                     # Task automation
+└── ⚙️ .vscode/                     # VS Code configuration
+    └── launch.json                # Debug configuration
 ```
 
 ## 🤝 Contributing
@@ -153,3 +172,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Ready to enhance your debugging experience?** 🚀
 
 Start with the [Setup Guide](SETUP_GUIDE.md) or jump right in with the Quick Start above!
+
+---
+
+## Footnotes
+
+[^1]: Use `chmod u+x file_name.sh` for each Linux file, or `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser` for PowerShell
+[^2]: Windows Powershell uses `python` in place of `python3`
