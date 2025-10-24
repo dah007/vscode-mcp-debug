@@ -12,3 +12,8 @@ zip: clean
 	@echo "📦 Creating zip archive..."
 	zip -r $(ZIP_NAME) . -x "*.git*" "*__pycache__*" "*.pyc" "*.pyo" "*.log" "*.coverage" "*.egg-info*" "build/*" "dist/*" ".venv/*" "venv/*" ".env" "env/*" ".pytest_cache/*" ".vscode/*" ".idea/*"
 	@echo "✅ Created $(ZIP_NAME)"
+
+.PHONY: check-endpoints
+check-endpoints:
+	@echo "Running endpoint checks..."
+	@scripts/check_endpoints.sh

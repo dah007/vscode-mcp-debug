@@ -1,0 +1,53 @@
+{
+    "name": "debug-data-forwarder",
+    "displayName": "Debug Data Forwarder",
+    "description": "Forwards VS Code debug data to MCP server",
+    "version": "0.0.1",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dah007/vscode-mcp-debug"
+    },
+    "publisher": "vscode-debug-mcp",
+    "main": "dist/extension.js",
+    "engines": {
+        "vscode": "^1.74.0"
+    },
+    "categories": [
+        "Debuggers"
+    ],
+    "activationEvents": [
+        "onDebug",
+        "onStartupFinished"
+    ],
+    "contributes": {
+        "configuration": {
+            "title": "Debug Data Forwarder",
+            "properties": {
+                "debugDataForwarder.serverUrl": {
+                    "type": "string",
+                    "default": "http://localhost:8001/debug-data",
+                    "description": "URL of the MCP server to send debug data to"
+                },
+                "debugDataForwarder.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable/disable debug data forwarding"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "compile": "npx tsc",
+        "watch": "npx tsc -watch"
+    },
+    "devDependencies": {
+        "typescript": "^5.0.0",
+        "@types/vscode": "^1.74.0",
+        "@types/node": "^18.0.0"
+    },
+    "dependencies": {
+        "node-fetch": "^2.6.7",
+        "@types/node-fetch": "^2.6.4"
+    }
+}

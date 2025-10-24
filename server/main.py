@@ -1,13 +1,36 @@
 from fastapi import FastAPI, Request
 from tools import mcp
+
+# NOTE about mounting FastMCP http_app:
+# The FastMCP helper `http_app(path=...)` registers routes relative to the
+# provided `path`. When mounting that Starlette/Starlette-like app into a
+# parent FastAPI app (via `app.mount("/sse", subapp)`), you must ensure the
+# inner app's registered routes are rooted correctly. If the inner app
+# registers the same prefix you mount it at (for example, inner path="/sse"
+# and you mount at "/sse"), requests will need to hit "/sse/sse" which is
+# confusing and leads to 404s. Additionally, the StreamableHTTP session
+# manager requires its lifespan to be executed so that its task group is
+# initialized; to ensure that happens we pass the subapp's lifespan into the
+# parent `FastAPI(lifespan=...)` so the inner lifecycle starts/stops with the
+# parent app. This prevents runtime errors that would otherwise result in 500
+# responses on SSE connection attempts.
 from store import debug_data, debug_sessions, current_session
 from datetime import datetime
 
 # Create a FastAPI app
 app = FastAPI()
 
-# Mount the MCP server at a subpath
-app.mount("/mcp", mcp.http_app())
+# Create the MCP http app and pass its lifespan into the parent FastAPI app.
+# This ensures the FastMCP StreamableHTTP session manager is started as part
+# of the parent's lifespan and avoids "Task group is not initialized" runtime
+# errors which resulted in 500 responses on SSE requests.
+mcp_app = mcp.http_app(path="/")
+
+# Pass the subapp lifespan into the parent app so subapp lifespan runs.
+app = FastAPI(lifespan=mcp_app.lifespan)
+
+# Mount the MCP HTTP server at /sse (supports SSE protocol)
+app.mount("/sse", mcp_app)
 
 @app.post("/debug-data")
 async def receive_debug_data(request: Request):
@@ -67,3 +90,31 @@ async def send_debug_data():
 @app.get("/health")
 async def health_check():
     return {"status": "healthy"}
+
+@app.get("/mcp-info")
+async def mcp_info():
+    """Get information about available MCP tools"""
+    return {
+        "mcp_server": mcp.name,
+        "sse_endpoint": "/sse",
+        "tools": [
+            {
+                "name": "get_variables",
+                "description": "Returns the latest debug variables"
+            },
+            {
+                "name": "get_stack_trace",
+                "description": "Returns the current stack trace"
+            },
+            {
+                "name": "get_breakpoints",
+                "description": "Returns the current breakpoints"
+            }
+        ],
+        "usage": {
+            "description": "MCP tools are accessed via SSE (Server-Sent Events) protocol",
+            "endpoint": "http://127.0.0.1:8001/sse",
+            "protocol": "Model Context Protocol (MCP)",
+            "clients": "Use MCP-compatible clients like Claude Desktop, or MCP client libraries"
+        }
+    }

@@ -25,14 +25,19 @@ htmlcov/
 .env.*
 
 # FastAPI-specific
-*.db
-instance/
-*.sqlite3
-*.sqlite
-*.json
-*.yaml
-*.yml
+server/*.db
+server/instance/
+server/*.sqlite3
+server/*.sqlite
+server/*.json
+server/*.yaml
+server/*.yml
 
 # Static and media files (if generated)
 staticfiles/
 media/
+
+.zip
+*.code-workspace
+*.vsix
+node_modules/
